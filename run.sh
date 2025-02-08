@@ -7,22 +7,22 @@ fi
 groupid=$1
 artifact=$2
 
-root_deployables=~/deployables
-deploy_path=$root_deployables/$groupid/$artifact
+repository=~/repository
+program_path=$repository/$groupid/$artifact
 
 if [ -z $3 ]
 then
-	version=`ls -dv $deploy_path/*/ | tail -1 | xargs -n 1 basename`
+	version=`ls -dv $program_path/*/ | tail -1 | xargs -n 1 basename`
 else
 	version=$3
 fi
 
 
-deploy_version_path=$deploy_path/$version
+program_version_path=$program_path/$version
 
 application_path=~/$artifact
 log_file=$application_path/log
-program=$deploy_version_path/$artifact-$version.jar
+program=$program_version_path/$artifact-$version.jar
 port="8080"
 
 
