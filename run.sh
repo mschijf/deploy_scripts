@@ -1,6 +1,6 @@
 if [ -z $1 ] || [ -z $2 ]
 then
-        echo "call is $0 {groupid} {artifact} [{version}]"
+        echo "MISSING ARGUMENTS: use $0 {groupid} {artifact} [{version}]"
         exit 0
 fi
 
@@ -35,6 +35,7 @@ fi
 script_path=$(dirname $(realpath -s $0))
 bash $script_path/stop.sh $artifact
 
+echo "Starting $artifact-$version on `hostname` ..."
 
 java -Dspring.profiles.active=prod -Dserver.port=$port -jar $program \
      --spring.config.location=classpath:/application.yml,$application_path/application.yml \
