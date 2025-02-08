@@ -38,5 +38,5 @@ bash $script_path/stop.sh $artifact
 echo "Starting $artifact-$version on `hostname` ..."
 
 java -Dspring.profiles.active=prod -Dserver.port=$port -jar $program \
-     --spring.config.location=classpath:/application.yml,$application_path/application.yml \
+     --spring.config.location=classpath:/,$application_path/ \
      >> $log_file 2>> $log_file &
