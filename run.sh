@@ -20,10 +20,12 @@ fi
 
 program_version_path=$program_path/$version
 
-application_path=~/$artifact
+application_path=~/application/$artifact
 log_file=$application_path/log
 program=$program_version_path/$artifact-$version.jar
 port="8080"
+
+secrets=~/application/config/secrets.yml
 
 
 if [ ! -f $program ]
@@ -39,4 +41,5 @@ echo "Starting $artifact-$version on `hostname` ..."
 
 java -Dspring.profiles.active=prod -Dserver.port=$port -jar $program \
      --spring.config.location=classpath:/,$application_path/ \
+     --spring.config.import="optional:$secrets" \
      >> $log_file 2>> $log_file &
