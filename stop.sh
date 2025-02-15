@@ -7,5 +7,5 @@ fi
 
 program=$1
 
-kill -9 `ps x | grep java | grep $program | awk '{print $1}'` 2> /dev/null
+kill -SIGTERM `ps x | grep java | grep $program | awk '{print $1}'` 2> /dev/null
 
